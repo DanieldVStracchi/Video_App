@@ -1,0 +1,10 @@
+<div class="video-container">
+  @if (workingUrl) {
+    <iframe [src]="workingUrl"
+      title="YouTube video container"
+      allowfullscreen>
+    </iframe>
+  } @else {
+    <div class="blank-placeholder"></div>
+  }
+</div>

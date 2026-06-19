@@ -1,0 +1,10 @@
+<section>
+  <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
+  <app-video-viewer [rawUrl]="currentUrl ?? '' "></app-video-viewer>
+</section>
+<section>
+  <app-history-tab></app-history-tab>
+</section>
+<section>
+  <app-bookmark-tab></app-bookmark-tab>
+</section>
