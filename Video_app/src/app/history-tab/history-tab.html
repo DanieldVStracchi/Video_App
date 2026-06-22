@@ -1,0 +1,16 @@
+@if (historyList.length > 0 ){
+    <div class="history-container">
+        <h3>YOUTUBE VIDEOS HISTORY</h3>
+        <ul>
+            @for (url of historyList; track url) {
+                <li>
+                    <button class="hisotry-link" (click)="$event.preventDefault(); selectUrl(url)"></button>
+                </li>
+
+            }
+        </ul>
+
+
+    </div>
+
+}

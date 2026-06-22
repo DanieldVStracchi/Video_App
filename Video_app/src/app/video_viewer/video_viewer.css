@@ -1,8 +1,10 @@
 .video-container {
   position: relative;
   width: 100%;
+  min-width: 80%;
   max-width: 800px; 
   margin: 0 auto;
+    
   aspect-ratio: 16 / 9; 
   background-color: #000; 
 }

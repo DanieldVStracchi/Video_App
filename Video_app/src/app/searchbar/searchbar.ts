@@ -4,7 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 @Component({
   selector: 'app-searchbar',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './searchbar.html',
   styleUrls: ['./searchbar.css'],
 })
