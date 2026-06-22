@@ -22,3 +22,5 @@ export class HistoryTab {
 //on history tab .> retrieve item 
 
 //eventListener (checks for storage, )
+
+//when typing an URL, it will send an event to the localStorage
