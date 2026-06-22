@@ -6,13 +6,13 @@ import { VideoViewer } from "../video_viewer/video_viewer";
 
 
 @Component({
-selector: 'home',
-imports: [Searchbar, HistoryTab, BookmarkTab, VideoViewer],
-templateUrl: 'home.html',
-styleUrls:['home.css'],
+    selector: 'home',
+    imports: [Searchbar, HistoryTab, BookmarkTab, VideoViewer],
+    templateUrl: 'home.html',
+    styleUrls: ['home.css'],
 })
 
-export class Home{
+export class Home {
 
     currentUrl: string | null = null;
 
