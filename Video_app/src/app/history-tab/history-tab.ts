@@ -21,7 +21,7 @@ export class HistoryTab {
 // Create OnInit() function, and put the EventListener inside it. You're goign to look for 'storage', 
 // and inside you can put a condition to look for your 'key' that you setup in searchbar.ts
 // then you can set historyList to have the values of your localStorage key object. 
-
+// You can try getting your localStorage object with historyList = JSON.parse(localStorage.getItem('key') || '[]')
 
 //onSearch -> store item in local storage (localStorage.set)
 //on history tab .> retrieve item 
