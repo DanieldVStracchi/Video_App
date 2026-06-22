@@ -5,6 +5,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './history-tab.html',
   styleUrl: './history-tab.css',
 })
+// Implement ngOnInit() here
 export class HistoryTab {
 
   @Input() historyList: string [] = [];
@@ -16,6 +17,10 @@ export class HistoryTab {
   }
 
 }
+
+// Create OnInit() function, and put the EventListener inside it. You're goign to look for 'storage', 
+// and inside you can put a condition to look for your 'key' that you setup in searchbar.ts
+// then you can set historyList to have the values of your localStorage key object. 
 
 
 //onSearch -> store item in local storage (localStorage.set)

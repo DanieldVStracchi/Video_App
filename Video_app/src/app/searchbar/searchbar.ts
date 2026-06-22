@@ -39,6 +39,7 @@ export class Searchbar {
         const urlValue = this.searchForm.controls.videoUrl.value;
         // Emitimos la URL limpia hacia el componente padre
         this.submittedSearch.emit(urlValue);
+        // TODO: Here, save your item in localStorage using localStorage.setItem('key', data) (change key and data accordingly, you might need json stringify)
         // Opcional: Reiniciar el formulario tras el envío
         this.searchForm.reset();
         }
