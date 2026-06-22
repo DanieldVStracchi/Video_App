@@ -1,6 +1,5 @@
 import { Component, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LocalStorageService } from '../local-storage';
 
 
 @Component({
@@ -35,7 +34,6 @@ export class Searchbar {
         return control ? control.invalid : false;
     }
 
-    constructor (private localStorageService: LocalStorageService){}
 
     onSearch() {
 
@@ -47,21 +45,24 @@ export class Searchbar {
 
             //PARA GUARDAR EN EL LOCAL STORAGE
             //COGE TODO EL HISTORIAL Y LO GUARDA EN UN ARRAY VACÍO
+            if (typeof window !== 'undefined') {
 
-            const existingHistory = this.localStorageService.getItem('searchHistory') || '[]';
+                const existingHistory = localStorage.getItem('searchHistory') || '[]';
 
-            //PARA TRANSFORMARLO EN EL LINGO DE JSON
+                //PARA TRANSFORMARLO EN EL LINGO DE JSON
 
-            const historyArray: string[] = JSON.parse(existingHistory);
+                const historyArray: string[] = JSON.parse(existingHistory);
 
-            //TONTERÍA PARA CONFIRMAR QUE NO HAY DUPLICADOS
-            if (urlValue && !historyArray.includes(urlValue))
-                historyArray.push(urlValue);
+                //TONTERÍA PARA CONFIRMAR QUE NO HAY DUPLICADOS
+                if (urlValue && !historyArray.includes(urlValue)) {
+                    historyArray.push(urlValue);
 
-            //PARA VOLVER A GUARDARLO EN UN STRING
-            this.localStorageService.setItem('searchHistory', JSON.stringify(historyArray))
+                }
+
+                //PARA VOLVER A GUARDARLO EN UN STRING
+                localStorage.setItem('searchHistory', JSON.stringify(historyArray))
+            }
             this.searchForm.reset();
         }
     }
-
 }

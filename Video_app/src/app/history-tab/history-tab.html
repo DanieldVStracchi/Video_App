@@ -4,7 +4,7 @@
         <ul>
             @for (url of historyList; track url) {
                 <li>
-                    <button class="hisotry-link" (click)="$event.preventDefault(); selectUrl(url)"></button>
+                    <button type="button" class="hisotry-link" (click)=" selectUrl(url)"></button>
                 </li>
 
             }

@@ -1,41 +1,18 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-history-tab',
-  imports: [],
   templateUrl: './history-tab.html',
   styleUrl: './history-tab.css',
 })
 
 
 // Implement ngOnInit() here
-export class HistoryTab implements OnInit {
+
+export class HistoryTab{
 
 
   @Input() historyList: string[] = [];
   @Output() selectedUrl = new EventEmitter<string>(); //eventEmitter funciona como triggers
-
-  private storageListener!: (event: StorageEvent) => void;
-
-constructor(private localStorageService: LocalStorageService) {}
-
-  ngOnInit(): void{
-    this.loadHistory();
-
-    this.storageListener = (event: StorageEvent) => {
-      if (event.key === 'searchHistory') {
-
-        this.loadHistory();
-      }
-    };
-
-    window.addEventListener('storage', this.storageListener);
-  }
-
-  private loadHistory(): void{
-
-    const data = this.localStorageService.getItem('searchHistory');
-    this.historyList = data ? JSON.parse(data) : [];
-  };
 
   selectUrl(url: string) {
     this.selectedUrl.emit(url);
