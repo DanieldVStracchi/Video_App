@@ -1,0 +1,96 @@
+.bookmark-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.bookmark-link {
+    width: 100%;
+    text-align: left;
+    padding: 10px 14px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #0066cc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.2s ease;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-info,
+.btn-delete {
+    margin-right: 10px;
+    padding: 8px 12px;
+    background-color: #e4ba03e1;
+    border: 1px solid #e4ba03e1;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-info:hover,
+.btn-delete:hover,
+.btn {
+    margin-right: 10px;
+    padding: 8px 12px;
+    background-color: #ffd000e1;
+    border: 1px solid #e4ba03e1;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.popUp-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.popUp-card {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 460px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.btn-popUp-close,
+.btn-popUp-confirm {
+    margin-right: 10px;
+    padding: 8px 12px;
+    background-color: #e4ba03e1;
+    border: 1px solid #e4ba03e1;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-popUp-confirm:hover, .btn-popUp-close:hover{
+     margin-right: 10px;
+    padding: 8px 12px;
+    background-color: #ffd000e1;
+    border: 1px solid #e4ba03e1;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}

@@ -1,39 +1,59 @@
 <div class="bookmark-container">
-  <h3>BOOKMARKED VIDEOS</h3>
-  <ul>
-    @for (item of bookmarkList; track item.url) {
-      <li class="bookmark-row">
-        
-        <button type="button" class="bookmark-link" (click)="selectedUrl.emit(item.url)">
-          {{ item.url }}
-        </button>
+    <h3>BOOKMARKED VIDEOS</h3>
+    <ul>
+        @for (item of bookmarkList; track item.url) {
+        <li class="bookmark-row">
 
-        <div class="action-buttons">
-          <button type="button" class="btn-info" (click)="openPopUp(item)">ADD</button>
-          <button type="button" class="btn-delete" (click)="onDeleteBookmark.emit(item.url)">DELETE</button>
-        </div>
+            <button type="button" class="bookmark-link" (click)="selectedUrl.emit(item.url)">
+                {{ item.url }}
+            </button>
 
-      </li>
-    } @empty {
-      <p class="empty-msg">NO SAVED URLS</p>
-    }
-  </ul>
+            <div class="action-buttons">
+                <button type="button" class="btn-info" (click)="openPopUp(item)">DETAILS</button>
+                <button type="button" class="btn-delete" (click)="openDeletePopUp(item)">DELETE</button>
+            </div>
+
+        </li>
+        } @empty {
+        <p class="empty-msg">NO SAVED URLS</p>
+        }
+    </ul>
 </div>
 
 @if (isPopUpOpen && selectedItem) {
-  <div class="modal-overlay" (click)="closePopUp()">
-    <div class="modal-content" (click)="$event.stopPropagation()">
-      <div class="modal-header">
-        <h4>DETAILS</h4>
-        <button type="button" class="close-x" (click)="closePopUp()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p><strong>URL:</strong></p>
-        <a [href]="selectedItem.url" target="_blank" class="modal-url">{{ selectedItem.url }}</a>
-        
-        <p><strong>DATE ADDED:</strong></p>
-        <span class="modal-date">📅 {{ selectedItem.bookmarkedAt }}</span>
-      </div>
+<div class="popUp-overlay" (click)="closePopUp()">
+    <div class="popUp-card" (click)="$event.stopPropagation()">
+        <h3 class="popUp-title">Video details</h3>
+
+        <div class="popUp-body">
+            <p class="popUp-text"><strong>URL:</strong></p>
+            <p class="popUp-url-display">{{ selectedItem.url }}</p>
+
+            <p class="popUp-text"><strong>Date added:</strong> {{ selectedItem.bookmarkedAt }}</p>
+        </div>
+
+        <div class="popUp-actions-container">
+            <button type="button" class="btn-popUp-close" (click)="closePopUp()">Close</button>
+        </div>
     </div>
-  </div>
+</div>
+}
+
+@if (isDeletePopUpOpen && selectedItem) {
+<div class="popUp-overlay" (click)="closePopUp()">
+    <div class="popUp-card" (click)="$event.stopPropagation()">
+        
+        <h3 class="popUp-title">REMOVE BOOKMARK</h3>
+
+        <div class="popUp-body">
+            <p class="popUp-text">Remove this video from your bookmarks?</p>
+            <p class="popUp-url-display">{{ selectedItem.url }}</p>
+        </div>
+
+        <div class="popUp-actions-container">
+            <button type="button" class="btn-popUp-close" (click)="closePopUp()">CANCEL</button>
+            <button type="button" class="btn-popUp-confirm" (click)="confirmDeletePopUp()">CONFIRM</button>
+        </div>
+    </div>
+</div>
 }

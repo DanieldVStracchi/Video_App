@@ -14,6 +14,7 @@ export class BookmarkTab {
 
 
   isPopUpOpen = false;
+  isDeletePopUpOpen = false;
   selectedItem: BookmarkUrl | null = null;
 
   openPopUp(item: BookmarkUrl) {
@@ -21,8 +22,21 @@ export class BookmarkTab {
     this.isPopUpOpen = true;
   }
 
+  openDeletePopUp(item: BookmarkUrl) {
+    this.selectedItem = item;
+    this.isDeletePopUpOpen = true;
+  }
+
+  confirmDeletePopUp(){
+    if(this.selectedItem){
+      this.onDeleteBookmark.emit(this.selectedItem.url)
+    }
+    this.closePopUp();
+  }
+
   closePopUp() {
     this.isPopUpOpen = false;
+    this.isDeletePopUpOpen = false;
     this.selectedItem = null;
   }
 }

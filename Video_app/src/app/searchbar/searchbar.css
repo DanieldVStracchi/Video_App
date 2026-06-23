@@ -7,8 +7,8 @@
   justify-content: space-around;
 }
 
-input[type="text"] {
-  border: solid 1px var(--primary-color);
+.search[type="text"] {
+  border: solid 1px var( #830000);
   padding: 10px;
   border-radius: 8px;
   margin-right: 4px;
@@ -18,17 +18,17 @@ input[type="text"] {
 
 button {
   padding: 10px;
-  border: solid 1px var(--primary-color);
-  background: var(--primary-color);
-  color: white;
+  border: solid 1px var( #b40404);
+  background-color: #a50808;
+  color: rgb(255, 255, 255);
   border-radius: 8px;
 }
 
 button:hover{
    padding: 10px;
-  border: solid 1px var(--primary-color);
-  background: var(--primary-color);
-  color: rgb(0, 0, 0);
+  border: solid 1px var( #b40404);
+  background-color: #c70707;
+  color: #080701;
   border-radius: 8px;
 }
 

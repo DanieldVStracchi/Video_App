@@ -1,47 +1,32 @@
-<div class="main-layout">
-  
-  <div class="search-bar-container">
-    <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
-    
-    @if (currentUrl) {
+<section>
+  <div class="search-container">
+    <div class="search-left">
+      <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
+    </div>
+    <div class="bookmark-right">
+
+      @if (currentUrl) {
       <button type="button" class="btn-bookmark-toggle" (click)="modifyBookmark()">
-        {{ urlBookmarked() ? '⭐ Quitar Marcador' : '☆ Guardar en Marcadores' }}
+        {{ urlBookmarked() ? 'DELETE FROM BOOKMARK ' : 'ADD TO BOOKMARK' }}
       </button>
-    }
+      }
+    </div>
   </div>
 
-  <div class="video-container">
-    <app-video-viewer [rawUrl]="currentUrl"></app-video-viewer>
-  </div>
-
+  <app-video-viewer [rawUrl]="currentUrl ?? '' "></app-video-viewer>
+</section>
+<section>
   <div class="panels-container">
-    
     <div class="panel-left">
-      <app-history-tab 
-        [historyList]="historyList" 
-        (selectedUrl)="onSearch($event)">
+      <app-history-tab [historyList]="historyList" (selectedUrl)="onSearch($event)">
       </app-history-tab>
     </div>
 
     <div class="panel-right">
-      <app-bookmark-tab 
-        [bookmarkList]="bookmarkList" 
-        (selectedUrl)="onSearch($event)"
+      <app-bookmark-tab [bookmarkList]="bookmarkList" (selectedUrl)="onSearch($event)"
         (onDeleteBookmark)="deleteBookmark($event)">
       </app-bookmark-tab>
     </div>
 
   </div>
-</div>
-
-
-<!--<section>
-  <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
-  <app-video-viewer [rawUrl]="currentUrl ?? '' "></app-video-viewer>
 </section>
-<section>
-  <app-history-tab [historyList]="historyList" (selectedUrl)="onSearch($event)"></app-history-tab>
-</section>
-<section>
-  <app-bookmark-tab></app-bookmark-tab>
-</section>-->

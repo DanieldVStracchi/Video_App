@@ -1,17 +1,19 @@
 .video-container {
   position: relative;
+  border: 5px;
   width: 100%;
   min-width: 80%;
-  max-width: 800px; 
+  max-width: 800px;
   margin: 0 auto;
-    
-  aspect-ratio: 16 / 9; 
-  background-color: #000; 
+
+  aspect-ratio: 16 / 9;
+  background-color: #000;
 }
 
 .video-container iframe,
 .blank-placeholder {
   position: absolute;
+  border: 5px;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,5 +21,7 @@
 }
 
 .blank-placeholder {
-  background-color: #000; 
+  background-color: #000;
+  border: 5px;
+
 }
