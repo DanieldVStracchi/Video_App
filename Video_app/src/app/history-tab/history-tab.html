@@ -1,16 +1,13 @@
 @if (historyList.length > 0 ){
-    <div class="history-container">
-        <h3>YOUTUBE VIDEOS HISTORY</h3>
-        <ul>
-            @for (url of historyList; track url) {
-                <li>
-                    <button type="button" class="hisotry-link" (click)=" selectUrl(url)"></button>
-                </li>
-
-            }
-        </ul>
-
-
-    </div>
+<div class="history-container">
+    <h3>YOUTUBE VIDEOS HISTORY</h3>
+    <ul>
+        @for (url of historyList; track url; let count = $index) {
+        <li>
+            <button type="submit" class="history-link" (click)="selectUrl(url)">{{ count+1 }} {{ url }}</button>
+        </li>
+        }
+    </ul>
+</div>
 
 }

@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angu
 
 // Implement ngOnInit() here
 
-export class HistoryTab{
+export class HistoryTab {
 
 
   @Input() historyList: string[] = [];
@@ -32,3 +32,6 @@ export class HistoryTab{
 
 //when typing an URL, it will send an event to the localStorage
 
+//make the history tab interact with the video viewer, link it similar to search bar
+
+//history tab dynamic

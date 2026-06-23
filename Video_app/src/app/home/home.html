@@ -1,10 +1,47 @@
-<section>
+<div class="main-layout">
+  
+  <div class="search-bar-container">
+    <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
+    
+    @if (currentUrl) {
+      <button type="button" class="btn-bookmark-toggle" (click)="modifyBookmark()">
+        {{ urlBookmarked() ? '⭐ Quitar Marcador' : '☆ Guardar en Marcadores' }}
+      </button>
+    }
+  </div>
+
+  <div class="video-container">
+    <app-video-viewer [rawUrl]="currentUrl"></app-video-viewer>
+  </div>
+
+  <div class="panels-container">
+    
+    <div class="panel-left">
+      <app-history-tab 
+        [historyList]="historyList" 
+        (selectedUrl)="onSearch($event)">
+      </app-history-tab>
+    </div>
+
+    <div class="panel-right">
+      <app-bookmark-tab 
+        [bookmarkList]="bookmarkList" 
+        (selectedUrl)="onSearch($event)"
+        (onDeleteBookmark)="deleteBookmark($event)">
+      </app-bookmark-tab>
+    </div>
+
+  </div>
+</div>
+
+
+<!--<section>
   <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
   <app-video-viewer [rawUrl]="currentUrl ?? '' "></app-video-viewer>
 </section>
 <section>
-  <app-history-tab [historyList]="historyList"></app-history-tab>
+  <app-history-tab [historyList]="historyList" (selectedUrl)="onSearch($event)"></app-history-tab>
 </section>
 <section>
   <app-bookmark-tab></app-bookmark-tab>
-</section>
+</section>-->
