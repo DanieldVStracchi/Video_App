@@ -1,10 +1,13 @@
-<section>
-  <div class="search-container">
-    <div class="search-left">
-      <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
+<div>
+  <div class="search-container-top">
+    <div class="search-container-flex">
+      <div class="search-container-wrap">
+        <app-searchbar (submittedSearch)="onSearch($event)"></app-searchbar>
+      </div>
     </div>
-    <div class="bookmark-right">
 
+
+    <div class="bookmark-container">
       @if (currentUrl) {
       <button type="button" class="btn-bookmark-toggle" (click)="modifyBookmark()">
         {{ urlBookmarked() ? 'DELETE FROM BOOKMARK ' : 'ADD TO BOOKMARK' }}
@@ -12,21 +15,22 @@
       }
     </div>
   </div>
+</div>
 
-  <app-video-viewer [rawUrl]="currentUrl ?? '' "></app-video-viewer>
-</section>
-<section>
-  <div class="panels-container">
+
+<div class="main">
+  <div class="containers">
     <div class="panel-left">
       <app-history-tab [historyList]="historyList" (selectedUrl)="onSearch($event)">
       </app-history-tab>
     </div>
-
+    <div class="panel-center">
+      <app-video-viewer class="video-container" [rawUrl]="currentUrl ?? '' "></app-video-viewer>
+    </div>
     <div class="panel-right">
       <app-bookmark-tab [bookmarkList]="bookmarkList" (selectedUrl)="onSearch($event)"
         (onDeleteBookmark)="deleteBookmark($event)">
       </app-bookmark-tab>
     </div>
-
   </div>
-</section>
+</div>

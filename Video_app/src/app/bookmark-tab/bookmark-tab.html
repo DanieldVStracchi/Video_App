@@ -1,3 +1,26 @@
+<!--<div class="bookmark-container">
+    <h3>BOOKMARKED VIDEOS</h3>
+    <ul>
+        @for (item of bookmarkList; track item.url) {
+        <li class="bookmark-row">
+
+            <button type="button" class="bookmark-link" (click)="selectedUrl.emit(item.url)">
+                {{ item.url }}
+            </button>
+
+            <div class="action-buttons">
+                <button type="button" class="btn-info" (click)="openPopUp(item)">DETAILS</button>
+                <img src="/info.svg" alt="info-icon" type="button" class="button-info" (click)="openPopUp(item)">
+                <button type="button" class="btn-delete" (click)="openDeletePopUp(item)">DELETE</button>
+            </div>
+
+        </li>
+        } @empty {
+        <p class="empty-msg">NO SAVED URLS</p>
+        }
+    </ul>
+</div>-->
+
 <div class="bookmark-container">
     <h3>BOOKMARKED VIDEOS</h3>
     <ul>
@@ -42,7 +65,7 @@
 @if (isDeletePopUpOpen && selectedItem) {
 <div class="popUp-overlay" (click)="closePopUp()">
     <div class="popUp-card" (click)="$event.stopPropagation()">
-        
+
         <h3 class="popUp-title">REMOVE BOOKMARK</h3>
 
         <div class="popUp-body">

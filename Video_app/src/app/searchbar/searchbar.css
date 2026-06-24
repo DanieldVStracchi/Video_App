@@ -8,8 +8,10 @@
 }
 
 .search[type="text"] {
-  border: solid 1px var( #830000);
+  display: flex;
+  justify-content: center;
   padding: 10px;
+  align-items: center;
   border-radius: 8px;
   margin-right: 4px;
   display: inline-block;
@@ -17,16 +19,17 @@
 }
 
 button {
+  position: relative;
   padding: 10px;
-  border: solid 1px var( #b40404);
+  border: solid 1px var(#b40404);
   background-color: #a50808;
   color: rgb(255, 255, 255);
   border-radius: 8px;
 }
 
-button:hover{
-   padding: 10px;
-  border: solid 1px var( #b40404);
+button:hover {
+  padding: 10px;
+  border: solid 1px var(#b40404);
   background-color: #c70707;
   color: #080701;
   border-radius: 8px;
@@ -34,15 +37,16 @@ button:hover{
 
 @media (min-width: 500px) and (max-width: 768px) {
   .results {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
+
   input[type="text"] {
-      width: 70%;
-  }   
+    width: 70%;
+  }
 }
 
 @media (max-width: 499px) {
   .results {
-      grid-template-columns: 1fr;
-  }    
+    grid-template-columns: 1fr;
+  }
 }

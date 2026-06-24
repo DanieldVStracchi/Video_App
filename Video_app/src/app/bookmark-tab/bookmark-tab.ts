@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { BookmarkUrl } from '../home/home';
 
 @Component({
@@ -7,6 +7,7 @@ import { BookmarkUrl } from '../home/home';
   templateUrl: './bookmark-tab.html',
   styleUrl: './bookmark-tab.css',
 })
+
 export class BookmarkTab {
   @Input() bookmarkList: BookmarkUrl[] = [];
   @Output() selectedUrl = new EventEmitter<string>();

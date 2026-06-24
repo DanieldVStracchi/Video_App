@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { HistoryTab } from '../history-tab/history-tab';
 import { BookmarkTab } from '../bookmark-tab/bookmark-tab';
 import { Searchbar } from '../searchbar/searchbar';
