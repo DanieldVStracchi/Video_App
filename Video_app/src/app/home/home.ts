@@ -3,6 +3,7 @@ import { HistoryTab } from '../history-tab/history-tab';
 import { BookmarkTab } from '../bookmark-tab/bookmark-tab';
 import { Searchbar } from '../searchbar/searchbar';
 import { VideoViewer } from "../video_viewer/video_viewer";
+import { Icons } from '../icons/icons';
 
 export interface BookmarkUrl {
     url: string;
@@ -10,7 +11,7 @@ export interface BookmarkUrl {
 }
 @Component({
     selector: 'home',
-    imports: [Searchbar, HistoryTab, BookmarkTab, VideoViewer],
+    imports: [Searchbar, HistoryTab, BookmarkTab, VideoViewer, Icons],
     templateUrl: 'home.html',
     styleUrls: ['home.css'],
 })
