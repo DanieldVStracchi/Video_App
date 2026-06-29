@@ -1,10 +1,11 @@
 import { Component, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Icons } from '../icons/icons';
 
 
 @Component({
     selector: 'app-searchbar',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, Icons],
     templateUrl: './searchbar.html',
     styleUrls: ['./searchbar.css'],
 })

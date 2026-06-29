@@ -32,8 +32,8 @@
             </button>
 
             <div class="action-buttons">
-                <button type="button" class="btn-info" (click)="openPopUp(item)">DETAILS</button>
-                <button type="button" class="btn-delete" (click)="openDeletePopUp(item)">DELETE</button>
+                <button type="button" class="btn-info" (click)="openPopUp(item)"><app-icons icon="info" color="white" width="24"></app-icons></button>
+                <button type="button" class="btn-delete" (click)="openDeletePopUp(item)"><app-icons icon="delete" color="red" width="24"></app-icons></button>
             </div>
 
         </li>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="popUp-actions-container">
-            <button type="button" class="btn-popUp-close" (click)="closePopUp()">Close</button>
+            <button type="button" class="btn-popUp-close" (click)="closePopUp()"><app-icons icon="close" color="white" width="20"></app-icons></button>
         </div>
     </div>
 </div>
@@ -74,9 +74,10 @@
         </div>
 
         <div class="popUp-actions-container">
-            <button type="button" class="btn-popUp-close" (click)="closePopUp()">CANCEL</button>
-            <button type="button" class="btn-popUp-confirm" (click)="confirmDeletePopUp()">CONFIRM</button>
+            <button type="button" class="btn-popUp-close" (click)="closePopUp()"><app-icons icon="close" color="white" width="20"></app-icons></button>
+            <button type="button" class="btn-popUp-confirm" (click)="confirmDeletePopUp()"><app-icons icon="confirm" color="white" width="20"></app-icons></button>
         </div>
     </div>
 </div>
 }
+

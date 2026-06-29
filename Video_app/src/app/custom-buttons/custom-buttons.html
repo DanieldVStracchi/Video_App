@@ -1,0 +1,18 @@
+<button *ngIf="isButton" class="custom-btn" [class.has-borders]="hasBorders" [style.background]="background || null">
+
+    <app-icons *ngIf="icon" 
+    [icon]="icon" 
+    [color]="color" 
+    [width]="width" 
+    [background]="iconBackground">
+    </app-icons>
+
+    <span *ngIf="label" class="custom-btn-label">{{ label }}</span>
+</button>
+
+<app-icons *ngIf="!isBurron && icon" 
+    [icon]="icon" 
+    [color]="color" 
+    [width]="width"
+    [background]="iconBackground">
+</app-icons>
