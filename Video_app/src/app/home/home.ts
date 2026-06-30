@@ -36,6 +36,12 @@ export class Home implements OnInit {
              const bookmarkData = localStorage.getItem('bookmarks');
              this.bookmarkList = bookmarkData ? JSON.parse(bookmarkData) : [];
          }*/
+
+        this.http.get('http://localhost:8000/history').subscribe((res: any) => {
+            console.log(res);
+            this.historyList = res.data()
+        });
+
         fetch('http://localhost:8000/history')
             .then(response => response.json())
             .then(data => {
@@ -65,7 +71,7 @@ export class Home implements OnInit {
 
             const bodyData = { url: url };
             this.http.post('http://localhost:8000/history', bodyData).subscribe((res: any) => {
-                console.log('res');
+                console.log('res = ', res);
             })
 
             // fetch('http://localhost:8000/history', {
