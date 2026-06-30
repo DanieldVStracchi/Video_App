@@ -4,6 +4,7 @@ import { BookmarkTab } from '../bookmark-tab/bookmark-tab';
 import { Searchbar } from '../searchbar/searchbar';
 import { VideoViewer } from "../video_viewer/video_viewer";
 import { Icons } from '../icons/icons';
+import { response } from 'express';
 
 export interface BookmarkUrl {
     url: string;
@@ -24,27 +25,54 @@ export class Home implements OnInit {
     bookmarkList: BookmarkUrl[] = [] //LO MISMO PERO PARA LOS URLS QUE SE QUIERAN GUARDAR
 
     ngOnInit(): void {  //PARA CARGAR LOS DATOS TANTO DE HISTORIAL COMO DE BOORKMARK
-        if (typeof window !== 'undefined') {
-            //HISTORY 
-            const data = localStorage.getItem('searchHistory');
-            this.historyList = data ? JSON.parse(data) : [];
+        /* if (typeof window !== 'undefined') {
+             //HISTORY 
+             const data = localStorage.getItem('searchHistory');
+             this.historyList = data ? JSON.parse(data) : [];
+ 
+             //BOOKMARK (ES LO MISMO)
+             const bookmarkData = localStorage.getItem('bookmarks');
+             this.bookmarkList = bookmarkData ? JSON.parse(bookmarkData) : [];
+         }*/
+        fetch('http://localhost:3000/history')
+            .then(response => response.json())
+            .then(data => {
+                this.historyList = data;
+                console.log('HISTORY RECIEVED FROM SERVER', data);
+            })
 
-            //BOOKMARK (ES LO MISMO)
-            const bookmarkData = localStorage.getItem('bookmarks');
-            this.bookmarkList = bookmarkData ? JSON.parse(bookmarkData) : [];
-        }
+        fetch('http://localhost:3000/bookmarks')
+            .then(response => response.json())
+            .then(data => {
+                this.bookmarkList = data;
+                console.log('BOOKMARK RECIEVED FROM SERVER', data);
+            })
+
     }
 
     onSearch(url: string) {
         this.currentUrl = url;
 
         if (url && url.trim() !== '') {  //SE AÑADE EN EL HISTORIAL UNA VEZ COMPRUEBA LA VALIDEZ
-            if (!this.historyList.includes(url)) {
+            /*if (!this.historyList.includes(url)) {
                 this.historyList = [...this.historyList, url];
                 if (typeof window !== 'undefined') {    //GUARDA EN LOCALSTORAGE
                     localStorage.setItem('searchHistory', JSON.stringify(this.historyList));
                 }
-            }
+            }*/
+            const bodyData = { url: url };
+            fetch('http://localhost:3000/history', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application.json'
+                },
+                body: JSON.stringify(bodyData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('URL SAVED', data)
+                    this.ngOnInit();
+                })
         }
     }
     urlBookmarked(): boolean {  //BOOLEAN DE SI EXISTE O NO EL URL EN BOOKMARKS
@@ -53,7 +81,7 @@ export class Home implements OnInit {
     }
 
     modifyBookmark() {
-        if (!this.currentUrl) return;
+       /* if (!this.currentUrl) return;
 
         if (this.urlBookmarked()) {
             this.deleteBookmark(this.currentUrl);
@@ -63,12 +91,25 @@ export class Home implements OnInit {
             };
             this.bookmarkList = [...this.bookmarkList, newItem];
             this.saveBookmark();
-        }
+        }*/
+
+        fetch('http://localhost:3000/bookmarks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: this.currentUrl })
+        })
+            .then(res => res.json())
+            .then(() => this.ngOnInit());
     }
 
     deleteBookmark(url: string) {
         this.bookmarkList = this.bookmarkList.filter(item => item.url !== url);
         this.saveBookmark();
+
+       /* this.http.delete('{API_URL}/bookmarks/${item.id}').subscribe(() => {
+            console.log('DELETING FROM BOOKMARKS')
+            this.loadBookmarks()
+        })*/
     }
 
     saveBookmark() {
