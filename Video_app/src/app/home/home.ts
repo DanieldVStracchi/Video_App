@@ -39,15 +39,8 @@ export class Home implements OnInit {
 
         this.http.get('http://localhost:8000/history').subscribe((res: any) => {
             console.log(res);
-            this.historyList = res.data()
+            this.historyList = res
         });
-
-        fetch('http://localhost:8000/history')
-            .then(response => response.json())
-            .then(data => {
-                this.historyList = data;
-                console.log('HISTORY RECIEVED FROM SERVER', data);
-            })
 
         fetch('http://localhost:8000/bookmarks')
             .then(response => response.json())
