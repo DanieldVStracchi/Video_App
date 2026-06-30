@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { BookmarkUrl } from '../home/home';
-import { icons } from '@lucide/angular';
 import { Icons } from '../icons/icons';
 
 @Component({

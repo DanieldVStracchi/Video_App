@@ -1,9 +1,10 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, inject } from '@angular/core';
 import { HistoryTab } from '../history-tab/history-tab';
 import { BookmarkTab } from '../bookmark-tab/bookmark-tab';
 import { Searchbar } from '../searchbar/searchbar';
 import { VideoViewer } from "../video_viewer/video_viewer";
 import { Icons } from '../icons/icons';
+import { HttpClient } from '@angular/common/http';
 
 export interface BookmarkUrl {
     url: string;
@@ -17,11 +18,12 @@ export interface BookmarkUrl {
 })
 
 export class Home implements OnInit {
-
+    private http = inject(HttpClient);
     currentUrl: string | null = null;
 
     historyList: string[] = [] //ARRAY QUE GUARDA LOS URLS BUSCADOS (Y QUE FUNCIONAN)
     bookmarkList: BookmarkUrl[] = [] //LO MISMO PERO PARA LOS URLS QUE SE QUIERAN GUARDAR
+    routeGet: any = '';
 
     ngOnInit(): void {  //PARA CARGAR LOS DATOS TANTO DE HISTORIAL COMO DE BOORKMARK
         if (typeof window !== 'undefined') {
@@ -75,6 +77,14 @@ export class Home implements OnInit {
         if (typeof window !== 'undefined') {
             localStorage.setItem('bookmarks', JSON.stringify(this.bookmarkList));
         }
+    }
+
+    testAPI() {
+        console.log('test');
+        this.routeGet = this.http.get('http://localhost:8000/history');
+        this.routeGet.subscribe((res: any) => {
+            console.log('res = ', res);
+        })
     }
 }
 
