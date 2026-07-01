@@ -1,15 +1,16 @@
-@if (historyList.length > 0 ){
 <div class="history-container">
     <h3>YOUTUBE VIDEOS HISTORY</h3>
+    @if (historyList.length > 0 ){
     <ul>
-        @for (item of historyList; track item.id; let count = $index) { <!--ESPECIFICAMOS QUE BUSQUE POR IR DEL OBJETO-->
+        @for (item of historyList; track item.id; let count = $index) {
+        <!--ESPECIFICAMOS QUE BUSQUE POR IR DEL OBJETO-->
         <li>
-            <button type="submit" class="history-link" (click)="selectUrl(item.url)">{{ count+1 }} {{ item.url }}</button>
+            <button type="submit" class="history-link" (click)="selectUrl(item.url)">{{ count+1 }} {{ item.url
+                }}</button>
             <!--LO MISMO PERO CON EL URL, MUESTRA EL URL CONTENIDO EN EL OBJETO, MUESTRA ESA PROPIEDAD-->
             <!--ANTES SOLO LO CONSIDERABA UN OBJETO-->
         </li>
         }
     </ul>
+    }
 </div>
-
-}
