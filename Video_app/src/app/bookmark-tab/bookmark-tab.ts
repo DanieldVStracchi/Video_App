@@ -12,7 +12,7 @@ import { Icons } from '../icons/icons';
 export class BookmarkTab {
   @Input() bookmarkList: BookmarkUrl[] = [];
   @Output() selectedUrl = new EventEmitter<string>();
-  @Output() onDeleteBookmark = new EventEmitter<string>();
+  @Output() onDeleteBookmark = new EventEmitter<any>();
 
 
   isPopUpOpen = false;
@@ -31,7 +31,7 @@ export class BookmarkTab {
 
   confirmDeletePopUp(){
     if(this.selectedItem){
-      this.onDeleteBookmark.emit(this.selectedItem.url)
+      this.onDeleteBookmark.emit(this.selectedItem.id)
     }
     this.closePopUp();
   }
