@@ -27,6 +27,7 @@ export class Home implements OnInit {
     bookmarkList: BookmarkUrl[] = [] //LO MISMO PERO PARA LOS URLS QUE SE QUIERAN GUARDAR
 
     ngOnInit(): void {  //PARA CARGAR LOS DATOS TANTO DE HISTORIAL COMO DE BOORKMARK
+
         /* if (typeof window !== 'undefined') {
              //HISTORY 
              const data = localStorage.getItem('searchHistory');
@@ -41,13 +42,10 @@ export class Home implements OnInit {
             console.log(res);
             this.historyList = res
         });
-
-        fetch('http://localhost:8000/bookmarks')
-            .then(response => response.json())
-            .then(data => {
-                this.bookmarkList = data;
-                console.log('BOOKMARK RECIEVED FROM SERVER', data);
-            })
+        this.http.get('http://localhost:8000/bookmarks').subscribe((res: any) => {
+            console.log(res);
+            this.bookmarkList = res
+        });
 
     }
 
@@ -55,6 +53,7 @@ export class Home implements OnInit {
         this.currentUrl = url;
 
         if (url && url.trim() !== '') {  //SE AÑADE EN EL HISTORIAL UNA VEZ COMPRUEBA LA VALIDEZ
+
             /*if (!this.historyList.includes(url)) {
                 this.historyList = [...this.historyList, url];
                 if (typeof window !== 'undefined') {    //GUARDA EN LOCALSTORAGE
@@ -66,19 +65,6 @@ export class Home implements OnInit {
             this.http.post('http://localhost:8000/history', bodyData).subscribe((res: any) => {
                 console.log('res = ', res);
             })
-
-            // fetch('http://localhost:8000/history', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-type': 'application.json'
-            //     },
-            //     body: JSON.stringify(bodyData)
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log('URL SAVED', data)
-            //         this.ngOnInit();
-            //     })
         }
     }
     urlBookmarked(): boolean {  //BOOLEAN DE SI EXISTE O NO EL URL EN BOOKMARKS
@@ -86,8 +72,35 @@ export class Home implements OnInit {
         return this.bookmarkList.some(item => item.url === this.currentUrl);
     }
 
+
+    saveBookmark(url: string) {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('bookmarks', JSON.stringify(this.bookmarkList));
+        }
+
+        const bodyData = { url: url, bookmarketAt: new Date().toLocaleString() };
+
+        this.http.post('http://localhost:8000/bookmarks', bodyData).subscribe((res: any) => {
+            console.log('res=', res);
+        })
+    }
+
+
+    deleteBookmark(url: string) {
+       /* this.bookmarkList = this.bookmarkList.filter(item => item.url !== url);
+        this.saveBookmark(url);*/
+
+        const bookmarkToDelete = this.bookmarkList.find(item => item.url === url)
+        const id = bookmarkToDelete ? bookmarkToDelete :null;
+
+        this.http.delete(`http://localhost:8000/bookmarks/${id}`).subscribe((res: any) => {
+            console.log('res = ', res);
+        })
+    }
+
+
     modifyBookmark() {
-       /* if (!this.currentUrl) return;
+        if (!this.currentUrl) return;
 
         if (this.urlBookmarked()) {
             this.deleteBookmark(this.currentUrl);
@@ -96,32 +109,8 @@ export class Home implements OnInit {
                 url: this.currentUrl, bookmarkedAt: new Date().toLocaleString()
             };
             this.bookmarkList = [...this.bookmarkList, newItem];
-            this.saveBookmark();
-        }*/
-
-        fetch('http://localhost:8000/bookmarks', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url: this.currentUrl })
-        })
-            .then(res => res.json())
-            .then(() => this.ngOnInit());
-    }
-
-    deleteBookmark(url: string) {
-        this.bookmarkList = this.bookmarkList.filter(item => item.url !== url);
-        this.saveBookmark();
-
-       /* this.http.delete('{API_URL}/bookmarks/${item.id}').subscribe(() => {
-            console.log('DELETING FROM BOOKMARKS')
-            this.loadBookmarks()
-        })*/
-    }
-
-    saveBookmark() {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('bookmarks', JSON.stringify(this.bookmarkList));
+            this.saveBookmark(this.currentUrl);
         }
+
     }
 }
-

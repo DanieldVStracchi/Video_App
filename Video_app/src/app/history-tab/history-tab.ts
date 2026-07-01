@@ -11,7 +11,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angu
 export class HistoryTab {
 
 
-  @Input() historyList: string[] = [];
+  @Input() historyList: any[] = []; //PERMITE QUE ACEPTE CUALQUIER TIPO DE PROPIEDAD, NO SOLO STRING (PARA EL URL)
   @Output() selectedUrl = new EventEmitter<string>(); //eventEmitter funciona como triggers
 
   selectUrl(url: string) {
